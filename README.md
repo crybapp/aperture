@@ -35,7 +35,7 @@ cryb/aperture/
 └─── src # The core source code
 ```
 
-### First time stup
+### First time setup
 First, clone the `@cryb/aperture` repository locally:
 
 ```
