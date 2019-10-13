@@ -1,4 +1,4 @@
-![Cryb OSS](https://cryb.nyc3.digitaloceanspaces.com/oss-assets/cryb-oss-logo.png "Cryb OSS Logo")
+![Cryb OSS](assets/cryb.png "Cryb OSS Logo")
 
 _**Aperture** - Video/audio forwarding_
 
