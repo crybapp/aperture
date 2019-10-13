@@ -1,4 +1,4 @@
-![Cryb OSS](assets/cryb.png "Cryb OSS Logo")
+![Cryb OSS](.github/cryb.png "Cryb OSS Logo")
 
 _**Aperture** - Video/audio forwarding_
 
