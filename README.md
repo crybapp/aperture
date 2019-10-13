@@ -1,4 +1,4 @@
-![Lol](https://cryb.nyc3.digitaloceanspaces.com/oss-assets/cryb-oss-logo.png)
+<img src="https://cryb.nyc3.digitaloceanspaces.com/oss-assets/cryb-oss-logo.png" width="50" />
 
 _**Aperture** - Video/audio forwarding_
 
