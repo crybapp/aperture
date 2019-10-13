@@ -1,6 +1,8 @@
-<img src="https://cryb.nyc3.digitaloceanspaces.com/oss-assets/cryb-oss-logo.png" width="50" />
+![Lol](https://cryb.nyc3.digitaloceanspaces.com/oss-assets/cryb-oss-logo.png)
 
 _**Aperture** - Video/audio forwarding_
+
+![GitHub contributors](https://img.shields.io/github/contributors/crybapp/aperture) ![GitHub](https://img.shields.io/github/license/crybapp/aperture)
 
 ## Docs
 * [Info](#info)
