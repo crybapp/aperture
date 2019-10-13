@@ -1,0 +1,24 @@
+{
+  "name": "@cryb/aperture",
+  "version": "1.0.0",
+  "description": "The microservice that handles forwarding @cryb/portal streams to clients.",
+  "main": "index.js",
+  "repository": "https://github.com/crybapp/aperture",
+  "author": "William Gibson <w.gibbo3@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r esm src"
+  },
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "esm": "^3.2.25",
+    "jsonwebtoken": "^8.5.1",
+    "mongojs": "^2.6.0",
+    "ws": "^7.1.2"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/jsonwebtoken": "^8.3.4",
+    "@types/ws": "^6.0.3"
+  }
+}
