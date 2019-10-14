@@ -6,7 +6,7 @@ import { verify } from 'jsonwebtoken'
 
 import { log, parse, fetchServerFromPortalId } from './utils'
 
-const wss = new Server({ port: 9001 }, () => log('Streaming Server running on :9000'))
+const wss = new Server({ port: 9001 }, () => log('WebSocket Server running on :9001'))
 
 wss.on('connection', async (socket, { url }) => {
     const { t: token } = parse(url),
