@@ -9,9 +9,10 @@ import { log, parse, fetchServerFromPortalId } from './utils'
 const wss = new Server({ port: 9001 }, () => log('WebSocket Server running on :9001'))
 
 wss.on('connection', async (socket, { url }) => {
-    const { t: token } = parse(url),
-            { id } = verify(token, process.env.APERTURE_KEY),
-            server = await fetchServerFromPortalId(id)
+    const { t: token } = parse(url)
+    if(!token) return socket.close()
+
+    const { id } = verify(token, process.env.APERTURE_KEY), server = await fetchServerFromPortalId(id)
     if(!server) return socket.close()
 
     socket['id'] = server.id
@@ -22,10 +23,11 @@ wss.on('connection', async (socket, { url }) => {
 })
 
 const server = http.createServer((req, res) => {
-    const { url } = req,
-            { t: token } = parse(url),
-            { id } = verify(token, process.env.APERTURE_KEY)
-    if(!id) res.end(null)
+    const { url } = req, params = parse(url)
+    if(!params.t) return res.end(null)
+
+    const { t: token } = params, { id } = verify(token, process.env.APERTURE_KEY)
+    if(!id) return res.end(null)
 
     res.connection.setTimeout(0)
     log(`Stream with id ${id} connected from ${req.socket.remoteAddress}:${req.socket.remotePort}`)

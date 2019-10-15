@@ -16,5 +16,14 @@ export const log = (...msg) => console.log('[CRYB-APERTURE]', ...msg)
 export const parse = url => {
 	if(url.length <= 1) return {}
 
-	return JSON.parse('{"' + decodeURI(_parse(url).query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+	const stringified = '{"' + decodeURI(_parse(url).query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}'
+	let object
+
+	try {
+		object = JSON.parse(stringified)
+	} catch {
+		return {}
+	}
+
+	return object
 }
