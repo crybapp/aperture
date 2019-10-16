@@ -1,0 +1,16 @@
+            ██████████████████████
+            ██████████████████████
+        ██████████████████████████████
+        ██████████████████████████████           Welcome to Cryb Aperture!
+    ██████████████████████████████████████
+    ██████████████████████████████████████       This server runs on ports :9000 and :9001 and requires the following:
+████████████                      ████████████
+████████████                      ████████████   * MongoDB (:27017)
+        ████                      ████           * @cryb/portal
+        ████     ████████         ████           
+        ████     ████████         ████           Have any issues? Open them at https://github.com/crybapp/aperture/issues
+        ████     ████████         ████           Working on new features? Merge them in at https://github.com/crybapp/aperture/merge_requests
+        ████     ████████         ████           
+        ████     ████████         ████
+        ██████████████████████████████
+        ██████████████████████████████
