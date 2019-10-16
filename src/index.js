@@ -4,7 +4,7 @@ import http from 'http'
 import { Server } from 'ws'
 import { verify } from 'jsonwebtoken'
 
-import { log, parse, fetchServerFromPortalId } from './utils'
+import { log, parse, fetchPortalFromId } from './utils'
 
 const wss = new Server({ port: 9001 }, () => log('WebSocket Server running on :9001'))
 
@@ -12,7 +12,7 @@ wss.on('connection', async (socket, { url }) => {
     const { t: token } = parse(url)
     if(!token) return socket.close()
 
-    const { id } = verify(token, process.env.APERTURE_KEY), server = await fetchServerFromPortalId(id)
+    const { id } = verify(token, process.env.APERTURE_KEY), server = await fetchPortalFromId(id)
     if(!server) return socket.close()
 
     socket['id'] = server.id

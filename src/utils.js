@@ -2,8 +2,8 @@ import { parse as _parse } from 'url'
 
 import db from './mongo.config.js'
 
-export const fetchServerFromPortalId = portalId => new Promise((resolve, reject) =>
-	db.servers.find({ 'info.portal': portalId }, (error, docs) => {
+export const fetchPortalFromId = portalId => new Promise((resolve, reject) =>
+	db.portals.find({ 'info.id': portalId }, (error, docs) => {
 	    if(error) return reject(error)
 	    if(docs.length === 0) return resolve(null)
 
