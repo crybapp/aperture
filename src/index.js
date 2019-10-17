@@ -52,25 +52,27 @@ const server = http.createServer((req, res) => {
         return res.end(null)
     }
 
+    let id
+
     try {
-        const { id } = verify(token, process.env.APERTURE_KEY)
+        id = verify(token, process.env.APERTURE_KEY).id
         if(!id) {
             log(`An attempted stream from ${address} was rejected as the portal ID could not be found`)
             return res.end(null)
         }
-
-        res.connection.setTimeout(0)
-        log(`Stream with ID ${id} connected from ${address}`)
-
-        req.on('data', data =>
-            Array.from(wss.clients)
-                .filter(client => client['id'] === id)
-                .forEach(client => client.send(data))
-        )
     } catch (error) {
         console.error(`An attempted stream from ${address} failed in authentication`, error)
         return res.end(null)
     }
+
+    res.connection.setTimeout(0)
+    log(`Stream with ID ${id} connected from ${address}`)
+
+    req.on('data', data =>
+        Array.from(wss.clients)
+            .filter(client => client['id'] === id)
+            .forEach(client => client.send(data))
+    )
 })
 
 server.listen(9000, () => log('Streaming Server running on :9000'))
