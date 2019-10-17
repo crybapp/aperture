@@ -16,8 +16,10 @@ wss.on('connection', async (socket, { url }) => {
         return socket.close()
     }
 
+    let id
+
     try {
-        const { id } = verify(token, process.env.APERTURE_KEY)
+        id = verify(token, process.env.APERTURE_KEY).id
         if(!id) {
             log(`A client was rejected as the portal ID could not be found`)
             return socket.close()
