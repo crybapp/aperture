@@ -18,17 +18,15 @@ wss.on('connection', async (socket, { url }) => {
 
     try {
         const { id } = verify(token, process.env.APERTURE_KEY), server = await fetchPortalFromId(id)
+        if(!id)
+            log(`A client was rejected as the portal ID could not be found`)
+        if(!server)
+            log(`A client tried to connect to a stream which does not exists: ${id}`)
+        if(!id || !server) return socket.close()
     } catch (error) {
         // I think we should log this for now as some people are experiencing issues
         // with this as their token gets expired, but shouldn't crash aperture now.
         console.error(`A client failed to authenticate`, error)
-    }
-    if(!id) {
-        log(`A client was rejected as the portal ID could not be found`)
-        return socket.close()
-    }
-    if(!server) {
-        log(`A client tried to connect to a stream which does not exists: ${id}`)
         return socket.close()
     }
 
@@ -51,11 +49,12 @@ const server = http.createServer((req, res) => {
 
     try {
         const { id } = verify(token, process.env.APERTURE_KEY)
+        if(!id) {
+            log(`An attempted stream from ${address} was rejected as the portal ID could not be found`)
+            return res.end(null)
+        }
     } catch (error) {
         console.error(`An attempted stream from ${address} failed in authentication`, error)
-    }
-    if(!id) {
-        log(`An attempted stream from ${address} was rejected as the portal ID could not be found`)
         return res.end(null)
     }
 
