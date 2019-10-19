@@ -6,8 +6,8 @@ import { verify } from 'jsonwebtoken'
 
 import { log, errlog, parse, fetchPortalFromId } from './utils'
 
-const streamingPort = process.env.STREAMING_PORT || 9000
-const aperturePort = process.env.APERTURE_PORT || 9001
+const streamingPort = process.env.STREAMING_PORT || 9000,
+        aperturePort = process.env.APERTURE_PORT || 9001
 
 console.log(require('fs').readFileSync('logo.txt', 'utf8')
             .replace(':APERTURE_PORT', aperturePort)
@@ -67,7 +67,7 @@ const server = http.createServer((req, res) => {
     let payload
 
     try {
-        payload = verify(token, process.env.STREAMING_KEY)
+        payload = verify(token, process.env.STREAMING_KEY || process.env.APERTURE_KEY)
     } catch (error) {
         errlog(`An attempted stream from ${address} failed in authentication`, error)
         return res.end(null)
