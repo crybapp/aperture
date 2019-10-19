@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "dotenv": "^8.1.0",
+    "esm": "^3.2.25",
     "jsonwebtoken": "^8.5.1",
     "mongojs": "^2.6.0",
     "ws": "^7.1.2"
