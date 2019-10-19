@@ -2,7 +2,7 @@
 
 _**Aperture** - Video/audio forwarding_
 
-![GitHub contributors](https://img.shields.io/github/contributors/crybapp/aperture) ![GitHub](https://img.shields.io/github/license/crybapp/aperture)
+[![GitHub contributors](https://img.shields.io/github/contributors/crybapp/aperture)](https://github.com/crybapp/aperture/graphs/contributors) [![License](https://img.shields.io/github/license/crybapp/aperture)](https://github.com/crybapp/aperture/blob/master/LICENSE) [![PayPal Donate](https://img.shields.io/badge/donate-PayPal-blue.svg)](https://paypal.me/williamsthing)
 
 ## Docs
 * [Info](#info)
@@ -14,7 +14,7 @@ _**Aperture** - Video/audio forwarding_
     * [Running the app locally](#running-the-app-locally)
         * [Background services](#background-services)
         * [Starting @cryb/aperture](#starting-@cryb/aperture)
-* [Questions / Issues](#questions-/-issues)
+* [Questions / Issues](#questions--issues)
 
 ## Info
 `@cryb/aperture` is the microservice used to forward video and audio streams from `@cryb/portal` onto clients.
@@ -68,4 +68,4 @@ To run `@cryb/aperture`, run `yarn start`.
 
 ## Questions / Issues
 
-If you have an issues with `@cryb/aperture`, please either open a GitHub issue, or contact a maintainer.
+If you have an issues with `@cryb/aperture`, please either open a GitHub issue, contact a maintainer or join the [Cryb Discord Server](https://discord.gg/ShTATH4) and ask in #tech-support.
