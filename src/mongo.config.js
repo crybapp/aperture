@@ -1,6 +1,7 @@
 require('dotenv').config()
 
-import mongojs from 'mongojs'
+import { connect, model } from 'mongoose'
 
-const db = mongojs(process.env.MONGODB_URI, ['portals'])
-export default db
+connect(process.env.MONGO_URI, { useNewUrlParser: true })
+const collection = model('Portal')
+export default collection
