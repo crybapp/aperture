@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.3",
     "mongojs": "^2.6.0",
     "ws": "^7.1.2"
   },
