@@ -3,7 +3,7 @@
         ██████████████████████████████
         ██████████████████████████████           Welcome to Cryb Aperture!
     ██████████████████████████████████████
-    ██████████████████████████████████████       This server runs on ports :9000 and :9001 and requires the following:
+    ██████████████████████████████████████       This server runs on ports :STREAMING_PORT and :APERTURE_PORT and requires the following:
 ████████████                      ████████████
 ████████████                      ████████████   * MongoDB (:27017)
         ████                      ████           * @cryb/portal
@@ -14,3 +14,4 @@
         ████     ████████         ████
         ██████████████████████████████
         ██████████████████████████████
+

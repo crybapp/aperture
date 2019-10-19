@@ -48,20 +48,11 @@ The following services need to be installed for `@cryb/aperture` to function:
 * MongoDB
 
 We recommend that you run the following services alongside `@cryb/aperture`, but it's not required.
-* `@cryb/api`
 * `@cryb/portal`
 
-You also need to install the required dependencies, by running either:
+You also need to install the required dependencies, by running `yarn`.
 
-```
-npm install
-```
-or
-```
-yarn
-```
-
-Ensure that `.env-example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
+Ensure that `.env.example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
 
 In this file, you'll need to supply the environment the app is running in under `NODE_ENV`, the key used to decrypt incoming requests over HTTP and WS, and the URI for MongoDB.
 
@@ -73,15 +64,7 @@ Make sure that you have installed MongoDB, and that it is running on port 27017.
 The command to start MongoDB is `mongod`.
 
 #### Starting @cryb/aperture
-To run `@cryb/aperture` in development mode, run either:
-
-```
-npm start
-```
-or
-```
-yarn start
-```
+To run `@cryb/aperture`, run `yarn start`.
 
 ## Questions / Issues
 

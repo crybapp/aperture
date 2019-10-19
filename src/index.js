@@ -4,11 +4,17 @@ import http from 'http'
 import { Server } from 'ws'
 import { verify } from 'jsonwebtoken'
 
-import { log, parse, fetchPortalFromId } from './utils'
+import { log, errlog, parse, fetchPortalFromId } from './utils'
 
-console.log(require('fs').readFileSync('logo.txt', 'utf8'))
+const streamingPort = process.env.STREAMING_PORT || 9000
+const aperturePort = process.env.APERTURE_PORT || 9001
 
-const wss = new Server({ port: 9001 }, () => log('WebSocket Server running on :9001'))
+console.log(require('fs').readFileSync('logo.txt', 'utf8')
+            .replace(':APERTURE_PORT', aperturePort)
+            .replace(':STREAMING_PORT', streamingPort)
+)
+
+const wss = new Server({ port: aperturePort }, () => log(`WebSocket Server running on :${aperturePort}`))
 wss.on('connection', async (socket, { url }) => {
     const { t: token } = parse(url)
 
@@ -24,7 +30,7 @@ wss.on('connection', async (socket, { url }) => {
     } catch (error) {
         // I think we should log this for now as some people are experiencing issues
         // with this as their token gets expired, but shouldn't crash aperture now.
-        console.error(`A client failed to authenticate`, error)
+        errlog(`A client failed to authenticate`, error)
         return socket.close()
     }
 
@@ -34,7 +40,7 @@ wss.on('connection', async (socket, { url }) => {
     }
 
     const { id } = payload,
-            server = await fetchPortalFromId(id)
+          server = await fetchPortalFromId(id)
 
     if(!server) {
         log(`A client tried to connect to a stream which does not exists: ${id}`)
@@ -42,10 +48,10 @@ wss.on('connection', async (socket, { url }) => {
     }
 
     socket['id'] = server.id
-    log('Connection over WS for Portal with ID', server.id)
+    log('Connection over WS for Portal ID', server.id)
 
-    socket.on('message', data => log('New message over WS:', data))
-    socket.on('close', () => log('Disconnection over WS'))
+    socket.on('message', data => log(`New message over WS for Portal ID ${id}:`, data))
+    socket.on('close', () => log(`Disconnection over WS for Portal ID ${id}`))
 })
 
 const server = http.createServer((req, res) => {
@@ -53,7 +59,7 @@ const server = http.createServer((req, res) => {
           { t: token } = parse(url),
           address = `${req.socket.remoteAddress}:${req.socket.remotePort}`
 
-    if(!token) {
+    if (!token) {
         log(`An attempted stream from ${address} failed as no token was provided`)
         return res.end(null)
     }
@@ -61,13 +67,13 @@ const server = http.createServer((req, res) => {
     let payload
 
     try {
-        payload = verify(token, process.env.APERTURE_KEY)
+        payload = verify(token, process.env.STREAMING_KEY)
     } catch (error) {
-        console.error(`An attempted stream from ${address} failed in authentication`, error)
+        errlog(`An attempted stream from ${address} failed in authentication`, error)
         return res.end(null)
     }
 
-    if(!payload.id) {
+    if (!payload.id) {
         log(`An attempted stream from ${address} was rejected as the portal ID could not be found`)
         return res.end(null)
     }
@@ -79,9 +85,9 @@ const server = http.createServer((req, res) => {
 
     req.on('data', data =>
         Array.from(wss.clients)
-            .filter(client => client['id'] === id)
-            .forEach(client => client.send(data))
+        .filter(client => client['id'] === id)
+        .forEach(client => client.send(data))
     )
 })
 
-server.listen(9000, () => log('Streaming Server running on :9000'))
+server.listen(streamingPort, () => log(`Streaming Server running on :${streamingPort}`))
