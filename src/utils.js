@@ -14,17 +14,12 @@ export const fetchPortalFromId = portalId => new Promise((resolve, reject) =>
 export const log = (...msg) => console.log('[CRYB-APERTURE]', ...msg)
 export const errlog = (...msg) => console.log('{CRYB-APERTURE}', ...msg)
 
-export const parse = url => {
-    if(url.length <= 1) return {}
+export const parse = (url) => {
+    if (url.length <= 1) return {}
+    const { query } = _parse(url)
+    if (!query) return {}
 
-    const stringified = '{"' + decodeURI(_parse(url).query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}'
-    let object
+    const stringified = '{"' + decodeURI(query).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}'
 
-    try {
-        object = JSON.parse(stringified)
-    } catch {
-        return {}
-    }
-
-    return object
+    return JSON.parse(stringified)
 }
