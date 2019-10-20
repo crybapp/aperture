@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
-    "@types/jsonwebtoken": "^8.3.4",
+    "@types/jsonwebtoken": "^8.3.5",
     "@types/mongoose": "^5.5.12",
     "@types/ws": "^6.0.3"
   }
