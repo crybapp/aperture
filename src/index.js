@@ -4,7 +4,9 @@ import http from 'http'
 import { Server } from 'ws'
 import { verify } from 'jsonwebtoken'
 
-import { log, errlog, parse, fetchPortalFromId } from './utils'
+import { verify_env, log, errlog, parse, fetchPortalFromId } from './utils'
+
+verify_env('APERTURE_KEY', 'STREAMING_KEY')
 
 const streamingPort = process.env.STREAMING_PORT || 9000,
         aperturePort = process.env.APERTURE_PORT || 9001

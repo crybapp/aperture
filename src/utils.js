@@ -11,10 +11,17 @@ export const fetchPortalFromId = portalId => new Promise((resolve, reject) =>
     })
 )
 
+export const verify_env = (...vars) => {
+    vars.forEach(evar => {
+        if (!process.env[evar.toUpperCase()])
+            throw `No value was found for ${evar} - make sure .env is setup correctly!`
+    })
+}
+
 export const log = (...msg) => console.log('[CRYB-APERTURE]', ...msg)
 export const errlog = (...msg) => console.log('{CRYB-APERTURE}', ...msg)
 
-export const parse = (url) => {
+export const parse = url => {
     if (url.length <= 1) return {}
     const { query } = _parse(url)
     if (!query) return {}
