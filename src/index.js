@@ -4,7 +4,7 @@ import http from 'http'
 import { Server } from 'ws'
 import { verify } from 'jsonwebtoken'
 
-import { verify_env, log, errlog, parse, fetchPortalFromId } from './utils'
+import { verify_env, log, errlog, parse, fetchServerFromPortalId } from './utils'
 
 verify_env('APERTURE_KEY', 'STREAMING_KEY')
 
@@ -42,7 +42,7 @@ wss.on('connection', async (socket, { url }) => {
     }
 
     const { id } = payload,
-          server = await fetchPortalFromId(id)
+          server = await fetchServerFromPortalId(id)
 
     if(!server) {
         log(`A client tried to connect to a stream which does not exists: ${id}`)

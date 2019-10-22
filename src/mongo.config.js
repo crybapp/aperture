@@ -2,17 +2,12 @@ require('dotenv').config()
 
 import mongoose from 'mongoose'
 
-const ModelSchema = new mongoose.Schema({
+const ServerSchema = new mongoose.Schema({
     info: {
         id: String,
-        createdAt: Number,
-        recievedAt: Number,
+        connectedAt: Number,
 
-        room: String,
-        status: String
-    },
-    data: {
-        serverId: String
+        portal: String
     }
 })
 
@@ -21,5 +16,6 @@ if (!uri)
     throw 'No value was found for MONGO_URI - make sure .env is setup correctly!'
 
 mongoose.connect(uri, { useNewUrlParser: true })
-const collection = mongoose.model('Portal', ModelSchema)
+
+const collection = mongoose.model('Server', ServerSchema)
 export default collection
