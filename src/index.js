@@ -42,7 +42,7 @@ wss.on('connection', async (socket, { url }) => {
     }
 
     const { id } = payload,
-          server = await fetchServerFromPortalId(id)
+            server = await fetchServerFromPortalId(id)
 
     if(!server) {
         log(`A client tried to connect to a stream which does not exists: ${id}`)
