@@ -13,7 +13,7 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.8",
+    "mongoose": "^5.7.13",
     "ws": "^7.2.0"
   },
   "devDependencies": {
