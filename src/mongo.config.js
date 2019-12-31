@@ -20,6 +20,6 @@ const uri = process.env.MONGO_URI || process.env.MONGODB_URI
 if (!uri)
     throw 'No value was found for MONGO_URI - make sure .env is setup correctly!'
 
-mongoose.connect(uri, { useNewUrlParser: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 const collection = mongoose.model('Portal', ModelSchema)
 export default collection
