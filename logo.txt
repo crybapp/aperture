@@ -7,10 +7,10 @@
 ████████████                      ████████████
 ████████████                      ████████████   * MongoDB (:27017)
         ████                      ████           * @cryb/portal
-        ████     ████████         ████           
+        ████     ████████         ████
         ████     ████████         ████           Have any issues? Open them at https://github.com/crybapp/aperture/issues
         ████     ████████         ████           Working on new features? Merge them in at https://github.com/crybapp/aperture/merge_requests
-        ████     ████████         ████           
+        ████     ████████         ████
         ████     ████████         ████
         ██████████████████████████████
         ██████████████████████████████

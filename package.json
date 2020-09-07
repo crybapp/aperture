@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "The microservice that handles forwarding @cryb/portal streams to clients.",
   "main": "index.js",
-  "repository": "https://github.com/crybapp/aperture",
-  "author": "William Gibson <w.gibbo3@icloud.com>",
+  "repository": "https://github.com/crybapp/aperture.git",
+  "author": "JeDaYoshi <hi@jeda.im>",
   "license": "MIT",
   "scripts": {
     "start": "node -r esm src"
